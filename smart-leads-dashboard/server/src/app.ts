@@ -11,16 +11,7 @@ dotenv.config();
 const app = express();
 
 // ✅ CORS FIX (IMPORTANT)
-app.use(
-  cors({
-    origin: [
-      "https://lead-web-three.vercel.app",
-      "https://lead-web-git-main-rakshitha-s-projects4.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-  })
-);
+app.use(cors())
 
 // ✅ Preflight requests fix
 app.options("*", cors());
