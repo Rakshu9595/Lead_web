@@ -10,19 +10,23 @@ dotenv.config();
 
 const app = express();
 
-// ✅ CORS FIX (IMPORTANT)
-app.use(cors())
+// ✅ CORS CONFIG (IMPORTANT)
+app.use(
+  cors({
+    origin: "https://lead-web-three.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
 
-// ✅ Preflight requests fix
+// ✅ HANDLE PREFLIGHT REQUESTS
 app.options("*", cors());
 
 app.use(express.json());
 
-// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/leads", leadRoutes);
 
-// Error handler
 app.use(errorHandler);
 
 export default app;
